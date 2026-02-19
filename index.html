@@ -38,7 +38,7 @@
   gtag('config', 'G-RH8M9DNBW0');
 </script>
 
-<style>
+ <style>
 :root {
   --bg: #ffffff;
   --text: #0f172a;
@@ -59,14 +59,14 @@ body.dark {
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.65;
   transition: all 0.3s ease;
+  line-height: 1.65;
 }
 
-/* Hero Gradient */
+/* Hero gradient */
 .hero-bg {
   position: absolute;
   top: -200px;
@@ -79,7 +79,7 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  max-width: 980px;
   margin: 100px auto;
   padding: 0 28px;
   position: relative;
@@ -91,71 +91,89 @@ body {
   align-items: center;
 }
 
-.logo { height: 44px; }
+/* Text Logo */
+.logo-text {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
 
+.logo-text span {
+  color: var(--accent);
+}
+
+/* Dark toggle */
 .toggle {
   font-size: 13px;
   cursor: pointer;
   color: var(--muted);
-  align-items: end;
 }
 
+/* Hero */
 h1 {
-  font-size: 56px;
-  font-weight: 600;
-  letter-spacing: -1.5px;
-  margin-top: 80px;
-  margin-bottom: 14px;
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin-top: 90px;
+  margin-bottom: 16px;
 }
 
 .tagline {
   font-size: 22px;
   color: var(--muted);
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+}
+
+/* Sections */
+.section {
+  margin-top: 100px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 h2 {
   font-size: 15px;
   font-weight: 600;
-  margin-top: 90px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 p {
   font-size: 19px;
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
-ul { padding-left: 22px; }
+ul {
+  padding-left: 22px;
+}
 
 li {
   font-size: 18px;
   margin-bottom: 12px;
 }
 
-.section {
-  margin-top: 80px;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s ease forwards;
+/* Product Grid */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
 }
 
-.section:nth-child(2) { animation-delay: 0.1s; }
-.section:nth-child(3) { animation-delay: 0.2s; }
-.section:nth-child(4) { animation-delay: 0.3s; }
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.product-box {
+.product-card {
   background: var(--card);
-  padding: 30px;
+  padding: 28px;
   border-radius: 16px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
 }
 
 .primary-btn {
@@ -167,11 +185,6 @@ li {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: transform 0.15s ease;
-}
-
-.primary-btn:hover {
-  transform: translateY(-2px);
 }
 
 .links a {
@@ -182,14 +195,17 @@ li {
 }
 
 .footer {
-  margin-top: 140px;
+  margin-top: 160px;
   font-size: 14px;
   color: var(--muted);
 }
 </style>
+
 </head>
 
 <body>
+
+    <div class="hero-bg"></div>
 
 <div class="container">
 
@@ -197,8 +213,9 @@ li {
     <div class="tagline">Less noise. More function.</div>
 
   <div class="header">
-    <div class="toggle" onclick="toggleDark()">Toggle Theme</div>
-  </div>
+  <div class="logo-text">Kozon<span>HQ</span></div>
+  <div class="toggle" onclick="toggleDark()">Theme</div>
+</div>
   
   <div class="section">
     <h2>About</h2>
@@ -221,14 +238,20 @@ li {
   </div>
 
   <div class="section">
-    <h2>Products</h2>
-    <div class="product-box">
-      <strong>Initial utility suite — in development</strong>
-      <p>
-        Our first set of focused digital tools is currently being built and validated.
-      </p>
+  <h2>Products</h2>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <strong>Utility Suite</strong>
+      <p>Focused digital tools designed for clarity and efficiency.</p>
+    </div>
+
+    <div class="product-card">
+      <strong>Automation Tools</strong>
+      <p>Lightweight workflows built to reduce repetitive tasks.</p>
     </div>
   </div>
+</div>
 
   <div class="section">
     <h2>Location</h2>
@@ -267,6 +290,17 @@ li {
 function toggleDark() {
   document.body.classList.toggle("dark");
 }
+
+const sections = document.querySelectorAll('.section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+sections.forEach(section => observer.observe(section));
 </script>
 
 </body>

@@ -1,0 +1,30 @@
+{
+  "name": "kozonhq.github.io",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "KozonHQ | Product Engineering & QA Strategy Lab KozonHQ is a high-performance technology agency specializing in building market-ready digital products. From single-purpose productivity tools and automation utilities to senior-level QA architecture and full-stack mobile applications, we engineer low-friction workflows that scale. We prioritize 'Zero-Bug'reliability and precision engineering for solopreneurs and service-based enterprises.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kozonhq/kozonhq.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0",
+    "next": "^16.2.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.9",
+    "tailwindcss": "^4.2.2"
+  }
+}
